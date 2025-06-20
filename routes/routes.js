@@ -23,6 +23,6 @@ router.post('/assistant',auth,assistant);
 
 router.post('/update',auth,upload.single("assitantImage"),updateAssistant)
 router.route("/signup").post(signup);
-router.route('/signup').get(signup);
+// router.route('/signup').get(signup);
 
 module.exports = router;

@@ -8,22 +8,19 @@ const cors = require('cors');
 const app = express();
 
 const corsOptions = {
-    origin: process.env.CLIENT_ORIGIN || "http://localhost:5173",
-    credentials: true,
-  };
-  app.use(cors(corsOptions));
-  
+  origin: process.env.CLIENT_ORIGIN || "http://localhost:5173",
+  credentials: true,
+};
 
-// Middlewares
-app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-// Routes
+// Mount routes
 app.use('/', routes);
 
-// Error handling middleware
+// Error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Something went wrong!' });
@@ -32,7 +29,6 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  db(); 
-  console.log('Connected to MongoDB');
-  console.log(`Server running at http://localhost:${PORT}`);
+  db();
+  console.log(`✅ Server running at http://localhost:${PORT}`);
 });
