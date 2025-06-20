@@ -18,6 +18,10 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Mount routes
+app.get('/', (req, res) => {
+  res.send('🟢 Express backend is live and working!');
+});
+
 app.use('/', routes);
 
 // Error handler
