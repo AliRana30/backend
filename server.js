@@ -22,17 +22,16 @@ app.get('/', (req, res) => {
   res.send('🟢 Express backend is live and working!');
 });
 
-app.use('/', routes);
-
-// Error handler
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: 'Something went wrong!' });
-});
 
 app.use((req, res, next) => {
   console.log(`🛬 Received ${req.method} on ${req.url}`);
   next();
+});
+
+app.use('/', routes);
+
+app.use((req, res) => {
+  res.status(404).json({ error: 'Route not found' });
 });
 
 const PORT = process.env.PORT || 5000;
