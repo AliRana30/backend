@@ -30,6 +30,11 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
+app.use((req, res, next) => {
+  console.log(`🛬 Received ${req.method} on ${req.url}`);
+  next();
+});
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {

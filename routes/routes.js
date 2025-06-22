@@ -20,7 +20,13 @@ router.get('/current-user', currentUser);
 
 // router.get("/login",auth,login);
 router.post('/assistant',auth,assistant);
-  
+
+router.get('/test-route', (req, res) => {
+  console.log('🔥 DEBUG HIT:', req.body);
+  res.status(200).json({ msg: 'debug route works!' });
+});
+
+
 router.post('/update',auth,upload.single("assitantImage"),updateAssistant)
 router.route("/signup").post(signup);
 
